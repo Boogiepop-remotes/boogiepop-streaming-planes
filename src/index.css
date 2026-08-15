@@ -1,0 +1,34 @@
+@import "tailwindcss";
+@import "./ui/styles.css";
+@import './styles/theme.css';
+
+/*
+  Tokens de la app. Los componentes de src/ui leen las variables --bp-*,
+  así que cambiar el look de la app = cambiar estos valores, no los componentes.
+*/
+/* --bp-* viven en styles/theme.css (módulo de diseño) */
+@theme {
+  --color-background: #fafaf8;
+  --color-foreground: #0f1117;
+  --color-muted: #7a7d8a;
+  --color-accent: #1a5c4a;
+  --color-primary: #0e2a43;
+  --color-surface: #e8e6e1;
+  --color-border: #e4e3df;
+  --color-label: #7a1f2b;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-display: "DM Serif Display", Georgia, serif;
+  --radius-sm: 0.125rem;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    margin: 0;
+    min-height: 100%;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}

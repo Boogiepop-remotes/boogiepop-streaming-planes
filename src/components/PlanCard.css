@@ -1,0 +1,31 @@
+/* Flip 3D de la card de plan.
+   Se usa CSS dedicado (no utilities Tailwind rotateY) porque las utilities
+   arbitrarias de Tailwind no interpolan bien el giro y el dorso aparece
+   desplazado en vez de en la misma posición. */
+
+.plan-card-flip {
+  perspective: 1200px;
+}
+
+.plan-card-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+}
+
+.plan-card-flip.is-flipped .plan-card-flip-inner {
+  transform: rotateY(180deg);
+}
+
+.plan-card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.plan-card-face--back {
+  transform: rotateY(180deg);
+}

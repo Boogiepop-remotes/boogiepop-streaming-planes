@@ -1,0 +1,85 @@
+/* Design tokens Tailwind v4 + --bp-* para src/ui — NO borrar. */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+@theme {
+  --color-background: #ffffff;
+  --color-foreground: #0b1f33;
+  --color-muted: #6b7280;
+  --color-accent: #7a1f2b;
+  --color-primary: #0e2a43;
+  --color-surface: #f4f0e8;
+  --color-border: #e5e2dc;
+  --color-label: #7a1f2b;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --radius-sm: 2px;
+}
+
+:root {
+  /* Tokens src/ui — alineados al @theme de este archivo. Ganan sobre el scaffold. */
+  --bp-primary: #0e2a43;
+  --bp-primary-hover: #0c253b;
+  --bp-accent: #7a1f2b;
+  --bp-bg: #ffffff;
+  --bp-muted-bg: #f4f0e8;
+  --bp-body: #0b1f33;
+  --bp-muted: #6b7280;
+  --bp-border: #e5e2dc;
+  --bp-surface: #f4f0e8;
+  --bp-focus-ring: rgba(14, 42, 67, 0.18);
+  --bp-shadow-sm: 0 1px 3px rgba(15, 17, 23, 0.08);
+  --bp-shadow-md: 0 8px 16px -4px rgba(15, 17, 23, 0.12), 0 2px 6px -2px rgba(15, 17, 23, 0.08);
+  --bp-shadow-lg: 0 18px 28px -8px rgba(15, 17, 23, 0.18), 0 8px 12px -6px rgba(15, 17, 23, 0.1);
+  --bp-radius-sm: 6px;
+  --bp-radius-md: 12px;
+  --bp-radius-lg: 18px;
+}
+
+/* Modo oscuro — se activa con la clase .dark (toggle en LandingPage).
+   Sobrescribe los tokens @theme y --bp-* para que bg-background, text-foreground,
+   surface, bordes y los componentes de src/ui cambien de verdad. */
+.dark {
+  --color-background: #0f1117;
+  --color-foreground: #f5f4f0;
+  --color-muted: #9aa0ab;
+  --color-accent: #5aa88f;
+  --color-primary: #7fb3d9;
+  --color-surface: #1a1d24;
+  --color-border: #2a2e37;
+  --color-label: #e08a94;
+
+  --bp-primary: #7fb3d9;
+  --bp-primary-hover: #6fa3c9;
+  --bp-accent: #5aa88f;
+  --bp-bg: #0f1117;
+  --bp-muted-bg: #1a1d24;
+  --bp-body: #f5f4f0;
+  --bp-muted: #9aa0ab;
+  --bp-border: #2a2e37;
+  --bp-surface: #1a1d24;
+  --bp-focus-ring: rgba(127, 179, 217, 0.25);
+  --bp-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --bp-shadow-md: 0 8px 16px -4px rgba(0, 0, 0, 0.5), 0 2px 6px -2px rgba(0, 0, 0, 0.4);
+  --bp-shadow-lg: 0 18px 28px -8px rgba(0, 0, 0, 0.6), 0 8px 12px -6px rgba(0, 0, 0, 0.5);
+}
+
+@layer components {
+  .ds-label {
+    @apply font-sans text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-label;
+  }
+  .ds-btn-primary {
+    @apply inline-flex items-center gap-1.5 rounded-sm bg-primary px-4 py-2 text-sm font-medium text-white no-underline;
+  }
+  .ds-btn-accent {
+    @apply inline-flex items-center gap-1.5 rounded-sm bg-accent px-4 py-2 text-sm font-medium text-white no-underline;
+  }
+  .ds-card {
+    @apply rounded-sm border border-border bg-background;
+  }
+  .ds-surface {
+    @apply bg-surface;
+  }
+  .ds-link {
+    @apply font-medium text-accent no-underline hover:underline;
+  }
+}

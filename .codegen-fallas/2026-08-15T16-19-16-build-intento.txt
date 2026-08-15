@@ -1,0 +1,58 @@
+motivo: build-intento
+chars: 1818
+
+Veo los errores de build:
+
+1. `src/components/PaymentModal.tsx` - líneas 120, 133, 147: `error={!!errores.numero}` pasa un `boolean` a `Input` que espera `string`.
+2. `src/pages/LandingPage.tsx` - línea 3: `Stack` importado pero no usado.
+
+Voy a corregir ambos archivos:
+
+@@@EDIT src/components/PaymentModal.tsx
+@@@FIND
+              value={numero}
+              onChange={(e) => setNumero(formatearNumero(e.target.value))}
+              error={!!errores.numero}
+            />
+@@@REPLACE
+              value={numero}
+              onChange={(e) => setNumero(formatearNumero(e.target.value))}
+              error={errores.numero}
+            />
+@@@ENDEDIT
+
+@@@EDIT src/components/PaymentModal.tsx
+@@@FIND
+                value={vencimiento}
+                onChange={(e) => setVencimiento(formatearVencimiento(e.target.value))}
+                error={!!errores.vencimiento}
+              />
+@@@REPLACE
+                value={vencimiento}
+                onChange={(e) => setVencimiento(formatearVencimiento(e.target.value))}
+                error={errores.vencimiento}
+              />
+@@@ENDEDIT
+
+@@@EDIT src/components/PaymentModal.tsx
+@@@FIND
+                value={cvv}
+                onChange={(e) => setCvv(soloDigitos(e.target.value).slice(0, 4))}
+                error={!!errores.cvv}
+              />
+@@@REPLACE
+                value={cvv}
+                onChange={(e) => setCvv(soloDigitos(e.target.value).slice(0, 4))}
+                error={errores.cvv}
+              />
+@@@ENDEDIT
+
+@@@EDIT src/pages/LandingPage.tsx
+@@@FIND
+import { Badge, Grid, Section, Stack, ToggleGroup } from '../ui'
+@@@REPLACE
+import { Badge, Grid, Section, ToggleGroup } from '../ui'
+@@@ENDEDIT
+
+@@@SUMMARY
+Corregidos errores de build: prop `error` de Input ahora recibe string (no boolean) y se eliminó import no usado de Stack.

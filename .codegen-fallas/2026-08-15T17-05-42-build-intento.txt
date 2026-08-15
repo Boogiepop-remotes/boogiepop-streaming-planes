@@ -1,0 +1,36 @@
+motivo: build-intento
+chars: 1448
+
+El error de build es que `ToggleGroup` espera un array mutable de `ToggleOption`, pero los arrays `as const` son readonly. La solución es quitar `as const` de los arrays de opciones.
+
+```@@@EDIT src/components/PlanQuizModal.tsx
+@@@FIND
+const QUE_VES_OPTIONS = [
+  { value: 'streaming', label: 'Series y películas' },
+  { value: 'deportes', label: 'Deportes en vivo' },
+  { value: 'cine', label: 'Estrenos de cine' },
+  { value: 'todo', label: 'Un poco de todo' },
+] as const
+
+const COMO_LO_USAS_OPTIONS = [
+  { value: 'solo', label: 'Solo yo' },
+  { value: 'familia', label: 'En familia' },
+  { value: 'pantallas', label: 'En varias pantallas' },
+] as const
+@@@REPLACE
+const QUE_VES_OPTIONS = [
+  { value: 'streaming', label: 'Series y películas' },
+  { value: 'deportes', label: 'Deportes en vivo' },
+  { value: 'cine', label: 'Estrenos de cine' },
+  { value: 'todo', label: 'Un poco de todo' },
+]
+
+const COMO_LO_USAS_OPTIONS = [
+  { value: 'solo', label: 'Solo yo' },
+  { value: 'familia', label: 'En familia' },
+  { value: 'pantallas', label: 'En varias pantallas' },
+]
+@@@ENDEDIT
+```
+
+**Resumen:** Quité `as const` de los dos arrays de opciones (`QUE_VES_OPTIONS` y `COMO_LO_USAS_OPTIONS`). Esto hace que TypeScript los infiera como arrays mutables de `{ value: string; label: string }`, que es lo que `ToggleGroup` espera. El resto del código queda intacto — no se tocó ninguna feature, ni el dark mode, ni las cards flip, ni el modal de pago.
