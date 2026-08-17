@@ -1,0 +1,14 @@
+motivo: build-intento
+chars: 665
+
+El error de build es claro: `setPeriodicidad` está declarado pero nunca se usa en `LandingPage.tsx`. La variable `periodicidad` se usa, pero el setter no. Voy a eliminar el setter no utilizado.
+
+```@@@EDIT src/pages/LandingPage.tsx
+@@@FIND
+  const [periodicidad, setPeriodicidad] = useState<Periodicidad>('anual')
+@@@REPLACE
+  const [periodicidad] = useState<Periodicidad>('anual')
+@@@ENDEDIT
+```
+
+Este es el único cambio necesario. El error TS6133 indica que `setPeriodicidad` está declarado pero nunca se lee, y como `periodicidad` se usa en el componente (se pasa a `PlanCard`, `PaymentModal` y `PlanQuizModal`), solo necesitamos eliminar el setter no utilizado.
