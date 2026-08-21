@@ -8,7 +8,7 @@ import boogiepopJsxLoc from './boogiepop-jsx-loc.mjs'
 const bpJsxLoc = process.env.BOOGIEPOP_JSX_LOC === '1'
 
 export default defineConfig({
-  base: './',
+  base: process.env.VITE_BASE || './',
   plugins: [...(bpJsxLoc ? [boogiepopJsxLoc()] : []), react(), tailwindcss()],
   build: { outDir: 'dist', emptyOutDir: true },
 })
