@@ -11,7 +11,7 @@ export function LandingPage() {
   const [planSeleccionado, setPlanSeleccionado] = useState<Plan | null>(null)
   const [quizAbierto, setQuizAbierto] = useState(false)
   const [darkMode, setDarkMode] = useState(() => {
-    return localStorage.getItem('darkMode') === 'true'
+    return localStorage.getItem('darkMode') !== 'false'
   })
   const navigate = useNavigate()
 
@@ -21,6 +21,7 @@ export function LandingPage() {
 
   const handleContratar = (plan: Plan) => {
     setPlanSeleccionado(plan)
+    setQuizAbierto(false)
   }
 
   const handleConfirmarPago = () => {
@@ -32,7 +33,7 @@ export function LandingPage() {
   }
 
   return (
-    <main className={`min-h-screen bg-background text-foreground ${darkMode ? 'dark' : ''}`}>
+    <main className={`min-h-screen text-foreground ${darkMode ? 'dark' : ''}`}>
       <div className="mx-auto max-w-6xl px-6 pt-8 pb-16">
         <header className="mb-12 text-center">
           <h1 className="font-display text-5xl leading-tight text-foreground md:text-6xl">
@@ -76,7 +77,7 @@ export function LandingPage() {
       </div>
 
       {/* Dark mode switch — fijo abajo a la izquierda */}
-      <div className="fixed bottom-4 left-4 z-40 flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-2 shadow-md">
+      <div className="hidden fixed bottom-4 left-4 z-40 flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-2 shadow-md">
         <span className="text-xs font-medium text-muted" aria-hidden="true">
           {darkMode ? '🌙' : '☀️'}
         </span>

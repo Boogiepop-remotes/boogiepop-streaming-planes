@@ -70,6 +70,7 @@ export function PlanQuizModal({ periodicidad, onClose, onContratar }: PlanQuizMo
   const handleContratar = () => {
     if (planRecomendado) {
       onContratar(planRecomendado)
+      onClose()
     }
   }
 

@@ -16,7 +16,7 @@ export function ExitoPage() {
 
   if (!plan) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-background px-6">
+      <main className="flex min-h-screen items-center justify-center px-6">
         <Card className="max-w-md p-8 text-center">
           <h1 className="font-display text-3xl text-foreground">No se encontró el plan</h1>
           <p className="mt-2 text-muted">Volvé a elegir un plan para contratar.</p>
@@ -31,7 +31,7 @@ export function ExitoPage() {
   const precio = plan.precios[periodicidad]
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-background px-6">
+    <main className="flex min-h-screen items-center justify-center px-6">
       <Card className="w-full max-w-lg p-8 text-center">
         <div className="mb-4 flex justify-center">
           <Badge tone="ok" className="text-sm">
